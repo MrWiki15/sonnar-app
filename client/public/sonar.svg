@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="350" height="350" viewBox="0 0 350 350">
+  <!-- Definiciones: degradado en tonos de rojo claro y filtro glow -->
+  <defs>
+    <linearGradient id="gradSonar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFCDD2; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EF9A9A; stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Líneas radiales sutiles para dar más detalle de “detección” -->
+  <line x1="125" y1="175" x2="225" y2="175" stroke="url(#gradSonar)" stroke-width="1" opacity="0.3" />
+  <line x1="175" y1="125" x2="175" y2="225" stroke="url(#gradSonar)" stroke-width="1" opacity="0.3" />
+
+  <!-- Nodo central: emisor del pulso -->
+  <circle cx="175" cy="175" r="6" fill="url(#gradSonar)" filter="url(#glow)" />
+
+  <!-- Detalle Hedera: Hexágono central (rotado para que un vértice sea superior) -->
+  <!-- Coordenadas calculadas para un hexágono centrado en (175,175) con radio 15 -->
+  <polygon points="
+      175,160
+      188,167.5
+      188,182.5
+      175,190
+      162,182.5
+      162,167.5
+    " 
+    fill="none" 
+    stroke="url(#gradSonar)" 
+    stroke-width="2" 
+    stroke-dasharray="4,4" 
+    filter="url(#glow)" 
+  />
+
+  <!-- Pulso Sonar: Animación 1 -->
+  <circle cx="175" cy="175" r="20" fill="none" stroke="url(#gradSonar)" stroke-width="3" opacity="0.5" filter="url(#glow)">
+    <animate attributeName="r" begin="0s" dur="3s" values="20;130" repeatCount="indefinite" />
+    <animate attributeName="opacity" begin="0s" dur="3s" values="0.5;0" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- Pulso Sonar: Animación 2 (con retardo) -->
+  <circle cx="175" cy="175" r="20" fill="none" stroke="url(#gradSonar)" stroke-width="3" opacity="0.5" filter="url(#glow)">
+    <animate attributeName="r" begin="1.5s" dur="3s" values="20;130" repeatCount="indefinite" />
+    <animate attributeName="opacity" begin="1.5s" dur="3s" values="0.5;0" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- Círculo estático adicional para agregar profundidad (línea discontinua) -->
+  <circle cx="175" cy="175" r="60" fill="none" stroke="url(#gradSonar)" stroke-width="2" stroke-dasharray="4,2" opacity="0.3" />
+</svg>

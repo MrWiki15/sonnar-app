@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <!-- Definiciones de gradientes, filtros y símbolos para íconos sociales -->
+  <defs>
+    <!-- Fondo: Degradado radial -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#FFFDE7" />
+      <stop offset="100%" stop-color="#F8BBD0" />
+    </radialGradient>
+    <!-- Gradiente para el efecto SONAR (tonos de rojo claro) -->
+    <linearGradient id="sonarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFCDD2" stop-opacity="1" />
+      <stop offset="100%" stop-color="#EF9A9A" stop-opacity="1" />
+    </linearGradient>
+    <!-- Filtro Glow para efectos luminosos -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <!-- Ícono para X -->
+    <symbol id="iconX" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" stroke="#EF9A9A" stroke-width="2" fill="none"/>
+      <text x="20" y="26" text-anchor="middle" font-size="20" fill="#EF9A9A" font-family="Helvetica, Arial, sans-serif">X</text>
+    </symbol>
+    <!-- Ícono para Instagram -->
+    <symbol id="iconIG" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" stroke="#EF9A9A" stroke-width="2" fill="none"/>
+      <text x="20" y="26" text-anchor="middle" font-size="16" fill="#EF9A9A" font-family="Helvetica, Arial, sans-serif">IG</text>
+    </symbol>
+    <!-- Ícono para Website -->
+    <symbol id="iconWeb" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" stroke="#EF9A9A" stroke-width="2" fill="none"/>
+      <text x="20" y="26" text-anchor="middle" font-size="12" fill="#EF9A9A" font-family="Helvetica, Arial, sans-serif">WWW</text>
+    </symbol>
+  </defs>
+
+  <!-- Fondo del Cover -->
+  <rect width="1200" height="600" fill="url(#bgGradient)" />
+
+  <!-- Grupo principal del logotipo SONAR, centrado en la pantalla -->
+  <g transform="translate(600,300) scale(1.5)">
+    <!-- Ondas de Sonar (dos círculos animados) -->
+    <circle cx="0" cy="0" r="20" fill="none" stroke="url(#sonarGrad)" stroke-width="3" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="r" begin="0s" dur="3s" values="20;130" repeatCount="indefinite" />
+      <animate attributeName="opacity" begin="0s" dur="3s" values="0.5;0" repeatCount="indefinite" />
+    </circle>
+    <circle cx="0" cy="0" r="20" fill="none" stroke="url(#sonarGrad)" stroke-width="3" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="r" begin="1.5s" dur="3s" values="20;130" repeatCount="indefinite" />
+      <animate attributeName="opacity" begin="1.5s" dur="3s" values="0.5;0" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Círculo estático adicional para la sensación de profundidad -->
+    <circle cx="0" cy="0" r="60" fill="none" stroke="url(#sonarGrad)" stroke-width="2" stroke-dasharray="4,2" opacity="0.3" />
+    
+    <!-- Nodo central -->
+    <circle cx="0" cy="0" r="6" fill="url(#sonarGrad)" filter="url(#glow)" />
+    
+    <!-- Detalle inspirado en Hedera: pequeño hexágono rotado -->
+    <polygon points="0,-15 13,-7.5 13,7.5 0,15 -13,7.5 -13,-7.5" fill="none" stroke="url(#sonarGrad)" stroke-width="2" stroke-dasharray="4,4" filter="url(#glow)" />
+    
+    <!-- Líneas radiales sutiles -->
+    <line x1="-75" y1="0" x2="75" y2="0" stroke="url(#sonarGrad)" stroke-width="1" opacity="0.3" />
+    <line x1="0" y1="-75" x2="0" y2="75" stroke="url(#sonarGrad)" stroke-width="1" opacity="0.3" />
+  </g>
+
+  <!-- Texto e Identidad -->
+  <text x="600" y="520" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="48" fill="#333333">
+    SONAR
+  </text>
+  <text x="600" y="570" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#333333">
+    Financiación para Eventos Web3
+  </text>
+
+  <!-- Grupo de Íconos Sociales con enlaces -->
+  <g id="social-icons">
+    <!-- Ícono para X -->
+    <a href="https://x.com/yourprofile" target="_blank">
+      <use href="#iconX" x="950" y="500"/>
+    </a>
+    <!-- Ícono para Instagram -->
+    <a href="https://instagram.com/yourprofile" target="_blank">
+      <use href="#iconIG" x="1010" y="500"/>
+    </a>
+    <!-- Ícono para Website -->
+    <a href="https://yourwebsite.com" target="_blank">
+      <use href="#iconWeb" x="1070" y="500"/>
+    </a>
+  </g>
+
+  <!-- Estrellas en la parte final: 20 puntos blancos simulando una lluvia de asteroides -->
+  <g id="movingStars">
+    <circle cx="-20" cy="570" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="10" cy="580" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="9s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="50" cy="565" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="11s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="100" cy="575" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="12s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="585" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="200" cy="570" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="8s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="250" cy="590" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="300" cy="575" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="9s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="350" cy="580" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="11s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="400" cy="565" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="450" cy="570" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="12s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="500" cy="580" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="8s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="550" cy="585" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="600" cy="570" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="9s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="650" cy="575" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="11s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="700" cy="590" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="750" cy="565" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="12s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="800" cy="580" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="8s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="850" cy="575" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="900" cy="585" r="2" fill="white">
+      <animateTransform attributeName="transform" type="translate" from="0,0" to="1300,0" dur="9s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>

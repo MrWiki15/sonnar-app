@@ -1,0 +1,157 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 346 100% 58%;
+    --primary-foreground: 355 100% 97%;
+
+    --secondary: 240 5.9% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 47 100% 68%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 346 100% 58%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 346 100% 58%;
+    --primary-foreground: 355 100% 97%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 47 100% 68%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346 100% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Estilo de desplazamiento */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-fiesta-primary/40 rounded-full;
+  }
+
+  /* Animaciones globales */
+  .page-transition-enter {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .page-transition-exit {
+    opacity: 1;
+  }
+
+  .page-transition-exit-active {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Efecto glassmorphism */
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+  
+  .glass-dark {
+    @apply bg-fiesta-dark/80 backdrop-blur-md border border-white/10 shadow-md;
+  }
+}
+
+@layer components {
+  .container-mobile {
+    @apply px-4 mx-auto w-full max-w-md;
+  }
+  
+  .btn-primary {
+    @apply bg-fiesta-primary text-white font-medium py-2.5 px-4 rounded-lg shadow-md 
+           hover:shadow-lg transition-all duration-300 hover:bg-fiesta-primary/90 
+           active:scale-95 focus:outline-none focus:ring-2 focus:ring-fiesta-primary/50;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-fiesta-dark font-medium py-2.5 px-4 rounded-lg 
+           border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 
+           hover:bg-gray-50 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-200;
+  }
+  
+  .input-primary {
+    @apply bg-white border border-gray-200 rounded-lg px-4 py-3 w-full
+           focus:outline-none focus:ring-2 focus:ring-fiesta-primary/50 focus:border-transparent
+           placeholder:text-gray-400 transition-all duration-300;
+  }
+  
+  .card-shadow {
+    @apply shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+  }
+}
