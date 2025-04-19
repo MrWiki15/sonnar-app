@@ -155,7 +155,7 @@ const PartyDetails = () => {
   };
 
   const handleViewDashboard = async (id) => {
-    navigate("/dashboard/" + id);
+    navigate(`/dashboard?sonnar=True&partyId=${id}`);
   };
 
   const handleAddFinanciation = async (id) => {

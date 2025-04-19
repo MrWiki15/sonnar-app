@@ -92,7 +92,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/:id"
+              path="/dashboard"
               element={
                 <ProtectedRoute>
                   <PartyAdminPanel />

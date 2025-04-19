@@ -5,6 +5,7 @@ import eventsRoutes from "./src/routes/eventsRoutes.js";
 import donationsRoutes from "./src/routes/donationsRoutes.js";
 import { validateEncryptionKey } from "./src/utils/crypto.js";
 import webPush from "web-push";
+import session from "express-session";
 
 dotenv.config();
 
@@ -29,6 +30,19 @@ app.use(
   })
 );
 app.use(express.json({ limit: "10kb" }));
+
+// Configurar sesiones
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET, // Clave secreta desde .env
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // HTTPS en producción
+      maxAge: 3600000, // 1 hora
+    },
+  })
+);
 
 // Rutas
 app.use("/events", eventsRoutes);

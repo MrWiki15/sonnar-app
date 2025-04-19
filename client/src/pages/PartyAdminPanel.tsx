@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Settings,
   Coins,
@@ -26,12 +26,28 @@ import SetupWallet from "@/components/partyPanel/setupWallet";
 import SetupHelp from "@/components/partyPanel/setupHelp";
 
 export default function PartyAdminPanel() {
-  const { id } = useParams<{ partyId: string }>();
+  const STORAGE_KEY = "selected_party_id_to_dashboard";
+  const [id, setId] = useState<string | null>(null);
 
   const [activePanel, setActivePanel] = useState<
     "token" | "liquidity" | "discord" | "help" | "wallet" | "event"
-  >("token");
+  >("discord");
   const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const idFromUrl = params.get("partyId");
+    const idFromStorage = localStorage.getItem(STORAGE_KEY);
+
+    if (idFromUrl) {
+      if (idFromUrl !== idFromStorage) {
+        localStorage.setItem(STORAGE_KEY, idFromUrl);
+      }
+      setId(idFromUrl);
+    } else if (idFromStorage) {
+      setId(idFromStorage);
+    }
+  }, []);
 
   return (
     <Layout>
