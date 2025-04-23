@@ -23,6 +23,7 @@ import FinanceParty from "./pages/FinanceParty";
 import Settings from "./pages/Settings";
 import Recuperar from "./pages/Recuperar";
 import PartyAdminPanel from "./pages/PartyAdminPanel";
+import DiscordSetupCallback from "./pages/DiscordSetupCallback";
 
 const queryClient = new QueryClient();
 
@@ -104,6 +105,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Admin />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/api/auth/discord/callback"
+              element={
+                <ProtectedRoute>
+                  <DiscordSetupCallback />
                 </ProtectedRoute>
               }
             />

@@ -7,8 +7,9 @@ import { windrawMoneyFunction } from "./functions/windrawMoneyFunction.js";
 import { windrawTokenFunction } from "./functions/windrawTokenFunction.js";
 import { createLiquidityPoolFunction } from "./functions/createLiquidityPoolFunction.js";
 import { setupDiscordFunction } from "./functions/setupDiscordFunction.js";
-import { connectDiscordFunction } from "./functions/connectDiscordFunction.js";
 import { newSetupDiscordFunction } from "./functions/newSetupDiscordFunction.js";
+import { callbackDiscordFunction } from "./functions/callbackDiscordFunction.js";
+import { getDiscordRolesFunction } from "./functions/getDiscordRolesFunction.js";
 
 export const createEvent = createEventFunction;
 export const checkWalletFunding = checkWalletFundingFunction;
@@ -19,5 +20,6 @@ export const windrawMoney = windrawMoneyFunction;
 export const windrawToken = windrawTokenFunction;
 export const createLiquidityPool = createLiquidityPoolFunction;
 export const setupDiscord = setupDiscordFunction;
-export const connectDiscord = connectDiscordFunction;
 export const newSetupDiscord = newSetupDiscordFunction;
+export const callbackDiscord = callbackDiscordFunction;
+export const getDiscordRoles = getDiscordRolesFunction;
