@@ -8,7 +8,15 @@ export const newSetupDiscordFunction = async (req, res) => {
       req.body;
 
     // 1. Validación de entrada
-    if (!guildId || !categoryName || !roleId || !partyId || !partyName) {
+    if (
+      !guildId ||
+      !categoryName ||
+      !emoji ||
+      !roleId ||
+      !userId ||
+      !partyId ||
+      !partyName
+    ) {
       return res.status(400).json({
         code: "missing_required_fields",
         message: "Faltan campos requeridos",
@@ -103,7 +111,7 @@ export const newSetupDiscordFunction = async (req, res) => {
       .setColor(0x5865f2)
       .addFields({
         name: `${emoji} ${partyName}`,
-        value: `ID: ${partyId}`,
+        url: `http://localhost:8080/fiesta/${partyId}`,
         inline: true,
       });
 

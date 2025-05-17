@@ -10,6 +10,7 @@ import { setupDiscordFunction } from "./functions/setupDiscordFunction.js";
 import { newSetupDiscordFunction } from "./functions/newSetupDiscordFunction.js";
 import { callbackDiscordFunction } from "./functions/callbackDiscordFunction.js";
 import { getDiscordRolesFunction } from "./functions/getDiscordRolesFunction.js";
+import { tokenExchangeDiscordFunction } from "./functions/tokenExangeDiscordFunction.js";
 
 export const createEvent = createEventFunction;
 export const checkWalletFunding = checkWalletFundingFunction;
@@ -23,3 +24,4 @@ export const setupDiscord = setupDiscordFunction;
 export const newSetupDiscord = newSetupDiscordFunction;
 export const callbackDiscord = callbackDiscordFunction;
 export const getDiscordRoles = getDiscordRolesFunction;
+export const tokenExangeDiscord = tokenExchangeDiscordFunction;

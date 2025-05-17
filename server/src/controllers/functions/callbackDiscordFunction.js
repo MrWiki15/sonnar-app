@@ -6,8 +6,11 @@ export const callbackDiscordFunction = async (req, res, next) => {
   try {
     // 1. Validar parámetros de la URL
     const { code } = req.query;
+    if (!code) {
+      return res.redirect(302, `${process.env.FRONTEND_URL}/?error=no_code`);
+    }
 
-    // 3. Intercambiar código por tokens
+    // 2. Intercambiar código por tokens
     const params = new URLSearchParams({
       client_id: process.env.DISCORD_CLIENT_ID,
       client_secret: process.env.DISCORD_CLIENT_SECRET,
@@ -24,7 +27,7 @@ export const callbackDiscordFunction = async (req, res, next) => {
       }
     );
 
-    // 4. Obtener datos del usuario
+    // 3. Obtener datos del usuario
     const [userData, guildsData] = await Promise.all([
       axios.get("https://discord.com/api/users/@me", {
         headers: { Authorization: `Bearer ${tokenResponse.data.access_token}` },
@@ -34,73 +37,75 @@ export const callbackDiscordFunction = async (req, res, next) => {
       }),
     ]);
 
+    // 4. Verificar usuario existente
     const { data: existingUser } = await supabase
-      .from("users_discord")
-      .select("*")
-      .eq("discord_data.user.id", userData.user.id)
-      .single();
-
-    if (existingUser) {
-      //verificar si el token sigue funcionando
-      const { data: userData } = await axios.get(
-        `https://discord.com/api/users/@me`,
-        {
-          headers: {
-            Authorization: `Bearer ${tokenResponse.data.access_token}`,
-          },
-        }
-      );
-
-      if (userData.id !== existingUser.discord_data.user.id) {
-        //token invalido, eliminar de la base de datos
-        await supabase.from("users_discord").delete().eq("id", existingUser.id);
-
-        return res.redirect(
-          302,
-          `${process.env.FRONTEND_URL}/?error=discord_token_invalid`
-        );
-      }
-    }
-
-    // 5. Guardar en Supabase
-    const { error } = await supabase.from("users_discord").insert({
-      discord_data: {
-        user: userData.data,
-        access_token: tokenResponse.data.access_token,
-        refresh_token: tokenResponse.data.refresh_token,
-        guilds: guildsData.data,
-      },
-      updated_at: new Date().toISOString(),
-    });
-
-    if (error) throw error;
-
-    const data = await supabase
       .from("users_discord")
       .select("*")
       .eq("discord_data.user.id", userData.data.id)
       .single();
-    if (!data) throw new Error("No se encontró el usuario en la base de datos");
 
-    // 6. Crear JWT seguro para el frontend
+    if (existingUser) {
+      // Actualizar usuario existente
+      const { error: updateError } = await supabase
+        .from("users_discord")
+        .update({
+          discord_data: {
+            user: userData.data,
+            access_token: tokenResponse.data.access_token,
+            refresh_token: tokenResponse.data.refresh_token,
+            guilds: guildsData.data,
+          },
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", existingUser.id);
+
+      if (updateError) throw updateError;
+    } else {
+      // Crear nuevo usuario
+      const { error: insertError } = await supabase
+        .from("users_discord")
+        .insert({
+          discord_data: {
+            user: userData.data,
+            access_token: tokenResponse.data.access_token,
+            refresh_token: tokenResponse.data.refresh_token,
+            guilds: guildsData.data,
+          },
+          updated_at: new Date().toISOString(),
+        });
+
+      if (insertError) throw insertError;
+    }
+
+    // 5. Crear JWT
     const token = jwt.sign(
       {
         sub: userData.data.id,
         access_token: tokenResponse.data.access_token,
+        user: {
+          id: userData.data.id,
+          username: userData.data.username,
+          avatar: userData.data.avatar,
+        },
         guilds: guildsData.data,
-        exp: Math.floor(Date.now() / 1000) + 3600, // 1 hora
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + 3600,
       },
       process.env.DISCORD_JWT_SECRET
     );
 
-    // 7. Redirigir al frontend con el token
+    // 6. Redirigir al frontend
     res.redirect(
       302,
-      `${process.env.FRONTEND_URL}/token=${encodeURIComponent(token)}`
+      `${process.env.FRONTEND_URL}/?token=${encodeURIComponent(token)}`
     );
   } catch (error) {
     console.error("Callback error:", error);
     const errorType = error.response?.data?.error || "internal_error";
-    res.redirect(302, `${process.env.FRONTEND_URL}?error=${errorType}`);
+    const errorMessage = encodeURIComponent(error.message || "Unknown error");
+    res.redirect(
+      302,
+      `${process.env.FRONTEND_URL}/?error=${errorType}&message=${errorMessage}`
+    );
   }
 };

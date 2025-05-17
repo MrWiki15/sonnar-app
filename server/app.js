@@ -49,7 +49,7 @@ app.use("/events", eventsRoutes);
 app.use("/donations", donationsRoutes);
 app.post("/worker", async (req, res) => await handler(req, res));
 
-// Manejo de errores centralizado
+// Manejo de errores centralizad
 app.use((err, req, res, next) => {
   console.error(`[${new Date().toISOString()}] Error: ${err.message}`);
   res.status(err.statusCode || 500).json({

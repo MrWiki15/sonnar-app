@@ -171,7 +171,7 @@ const Settings = () => {
           </div>
 
           {/* Mensaje Personalizado */}
-          <div className="bg-white rounded-xl p-4 shadow-sm space-y-4">
+          {/* <div className="bg-white rounded-xl p-4 shadow-sm space-y-4">
             <h2 className="text-lg font-semibold flex items-center">
               <MessageCircle size={18} className="mr-2 text-fiesta-primary" />
               Que encontraras en Sonnar ?
@@ -186,7 +186,7 @@ const Settings = () => {
                 {PERSONALIZED_MESSAGES[currentMessageIndex].text}
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* Botón de Guardar */}
           <ButtonAnimated

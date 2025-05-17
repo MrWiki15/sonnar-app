@@ -12,6 +12,7 @@ import {
   newSetupDiscord,
   callbackDiscord,
   getDiscordRoles,
+  tokenExangeDiscord,
 } from "../controllers/eventController.js";
 import { eventSchema } from "../validation/validationSchemas.js";
 import { validate } from "../middleware/validationMiddleware.js";
@@ -31,8 +32,9 @@ router.post("/withdraw_token", windrawToken);
 
 router.post("/set_sesion", setOAuthState);
 router.get("/callback", callbackDiscord);
-router.post("/sew_setup_discord", newSetupDiscord);
+router.post("/discord_token_exchange", tokenExangeDiscord);
+router.post("/new_setup_discord", newSetupDiscord);
 router.post("/setup_discord", setupDiscord);
-router.get("/discord_roles", getDiscordRoles);
+router.post("/discord_roles", getDiscordRoles);
 
 export default router;
