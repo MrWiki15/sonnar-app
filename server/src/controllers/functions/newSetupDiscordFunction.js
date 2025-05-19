@@ -111,7 +111,7 @@ export const newSetupDiscordFunction = async (req, res) => {
       .setColor(0x5865f2)
       .addFields({
         name: `${emoji} ${partyName}`,
-        url: `http://localhost:8080/fiesta/${partyId}`,
+        value: `[Ver evento](http://localhost:8080/fiesta/${partyId})`, // Añadir value
         inline: true,
       });
 

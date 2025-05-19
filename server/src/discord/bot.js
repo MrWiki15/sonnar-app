@@ -58,7 +58,7 @@ discordBot.on("messageReactionAdd", async (reaction, user) => {
             .setTitle(`Verificación para ${party.party_name}`)
             .setDescription(
               `Haz clic en el enlace para completar la verificación:\n` +
-                `${process.env.BASE_URL}/kyc/${party.party_id}?discord_id=${user.id}`
+                `${process.env.BOT_BASE_URL}/kyc/${party.party_id}`
             )
             .setColor(0x5865f2),
         ],

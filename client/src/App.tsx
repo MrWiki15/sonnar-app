@@ -24,6 +24,7 @@ import Settings from "./pages/Settings";
 import Recuperar from "./pages/Recuperar";
 import PartyAdminPanel from "./pages/PartyAdminPanel";
 import DiscordSetupCallback from "./pages/DiscordSetupCallback";
+import KycEvent from "./pages/KycEvent";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,8 @@ const App = () => (
             <Route path="/buscar" element={<Search />} />
             <Route path="/mapa" element={<Map />} />
             <Route path="/artista/:id" element={<ArtistDetails />} />
+            <Route path="/kyc/" element={<KycEvent />} />
+            <Route path="/kyc/:id" element={<KycEvent />} />
             <Route
               path="/crear"
               element={

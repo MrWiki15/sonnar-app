@@ -13,6 +13,7 @@ import {
   callbackDiscord,
   getDiscordRoles,
   tokenExangeDiscord,
+  assignDiscordRole,
 } from "../controllers/eventController.js";
 import { eventSchema } from "../validation/validationSchemas.js";
 import { validate } from "../middleware/validationMiddleware.js";
@@ -35,6 +36,7 @@ router.get("/callback", callbackDiscord);
 router.post("/discord_token_exchange", tokenExangeDiscord);
 router.post("/new_setup_discord", newSetupDiscord);
 router.post("/setup_discord", setupDiscord);
+router.post("/assign_discord_role", assignDiscordRole);
 router.post("/discord_roles", getDiscordRoles);
 
 export default router;

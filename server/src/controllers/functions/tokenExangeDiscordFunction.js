@@ -45,6 +45,7 @@ export const tokenExchangeDiscordFunction = async (req, res, next) => {
       guilds: userGuilds.filter((g) => (g.permissions & 0x8) === 0x8),
     });
   } catch (error) {
+    console.log(error.data);
     next(error);
   }
 };
